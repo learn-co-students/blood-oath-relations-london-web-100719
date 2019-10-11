@@ -2,14 +2,15 @@ require 'pry'
 
 class BloodOath
 
-    attr_reader :name
+    attr_reader :cult, :person
     attr_accessor
 
     @@all = []
 
-    def initialize(name)
+    def initialize(cult, person)
 
-        @name = name
+        @cult = cult
+        @person = person
 
         BloodOath.all << self
 
