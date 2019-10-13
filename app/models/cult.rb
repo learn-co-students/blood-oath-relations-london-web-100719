@@ -20,9 +20,8 @@ class Cult
     BloodOath.new(follower, self, date)    
   end
 
-  def find_by_name(name)
-    #output should be instance not array
-    self.all.select { |cult| cult.name == name }
+  def self.find_by_name(name)
+    self.all.select { |cult| cult.name == name }[0]
   end
 
   def find_by_location(location)
@@ -31,5 +30,35 @@ class Cult
 
   def find_by_founding_year(year)
     self.all.select { |cult| cult.founding_year == year }
+  end
+
+  def oaths
+    BloodOath.all.select { |oath| oath.cult == self }
+  end
+
+  def followers
+    self.oaths.map { |oath| oath.follower }
+  end
+
+  def headcount
+    followers.length
+  end
+
+  def average_age
+    (followers.map { |follower| follower.age }.sum / followers.length).to_f
+  end
+
+  def my_followers_mottos
+    self.followers.map { |follower| follower.life_motto }
+  end
+
+  def self.least_popular
+    self.all.sort_by(&:headcount)[0]
+  end
+  
+  def most_common_location
+    #max_by! what an enumerable! this bad boy returns the object that gives the maximum value from the given block. In this case, it will look through an array of all cult locations, and return the location which appears most frequently (the maximum value for place.count(place)).
+    places = self.all.map{|cult| cult.location }
+    places.max_by { |place| place.count(place) }
   end
 end

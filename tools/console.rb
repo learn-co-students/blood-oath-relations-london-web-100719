@@ -15,7 +15,8 @@ f1 = Follower.new("gordy", 28, "are we really doing this?")
 f2 = Follower.new("lara", 30, "i am a cat")
 f3 = Follower.new("caro", 25, "i accidentally a thing")
 
-b1 = BloodOath.new(f1, c1, 2019-01-01)
+b1 = BloodOath.new(f1, c1, "2007-01-01")
+b2 = BloodOath.new(f2, c2, "1990-12-31")
 
 
 

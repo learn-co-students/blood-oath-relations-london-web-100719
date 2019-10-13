@@ -12,4 +12,8 @@ class BloodOath
   def self.all
     @@all
   end
+
+  def self.first_oath
+    self.all.min_by(&:initiation_date)
+  end
 end
