@@ -14,9 +14,13 @@ class Follower
   end
 
   def join_cult(cult)
-    time = Time.now
-    date = "#{time.year}-#{time.month}-#{time.day}"
-    BloodOath.new(self, cult, date)
+    if self.age >= cult.minimum_age
+      time = Time.now
+      date = "#{time.year}-#{time.month}-#{time.day}"
+      BloodOath.new(self, cult, date)
+    else
+      puts 'You are too young to join.'
+    end
   end
 
   def cults
@@ -43,6 +47,10 @@ class Follower
 
   def self.top_ten
     self.all.sort_by(&:cult_count)[-10..-1]
+  end
+
+  def fellow_cult_members
+    self.cults.map { |cult| cult.followers }[0].uniq - [self]
   end
 
 end
