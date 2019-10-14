@@ -4,8 +4,6 @@ class Cult
 
     attr_reader :name, :location, :slogan, :founding_year
 
-    @followers=[]
-
     def self.all
         @@all
     end
@@ -34,11 +32,14 @@ class Cult
 
     def recruit_follower(follower)
         BloodOath.new(self, follower, Time.now)
-        @followers << follower
+    end
+
+    def own_bloodoaths
+        BloodOath.all#.select{|bloadoath|bloadoath.cult==self}
     end
 
     def cult_population
-        #who should know aboit followers?
+        own_bloodoaths.map {|bloodoath|bloodoath.follower}
     end
 
 end

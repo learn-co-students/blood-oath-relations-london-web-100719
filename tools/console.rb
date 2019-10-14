@@ -18,6 +18,8 @@ c2=Cult.new("Brother", "Berlin", "tbc", 2012)
 c3=Cult.new("Sisters", "New York", "Old School", 2012)
 c4=Cult.new("Little Brothers", "Berlin", "tbc", 2013)
 
+c1.recruit_follower(f1)
+c1.recruit_follower(f2)
 
 binding.pry
 

@@ -4,7 +4,6 @@ class Follower
 
     attr_reader :name, :age, :life_motto
 
-    @cults = []
 
     def self.all
         @@all
@@ -24,7 +23,6 @@ class Follower
 
     def join_cult(cult)
         BloodOath.new(cult, self, Time.now)
-        @cults << cult
     end
 
 
