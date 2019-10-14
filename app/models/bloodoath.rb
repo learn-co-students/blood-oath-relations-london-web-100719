@@ -8,6 +8,11 @@ class BloodOath
         @@all
     end
 
+    def self.first_oath
+        self.all.min_by {|oath| oath.initiation_date}
+    end
+
+
     def initialize(cult, follower, date)
         
         @cult            = cult

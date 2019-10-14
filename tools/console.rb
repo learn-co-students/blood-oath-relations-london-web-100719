@@ -11,15 +11,22 @@ end
 f1=Follower.new("John Doe", 34, "wassup")
 f2=Follower.new("Mike Man", 44, "yolo")
 f3=Follower.new("Lora White", 34, "to be or not to be")
+f4=Follower.new("Lora Black", 44, "ja ja")
+f5=Follower.new("Lora Snow", 30, "hmmm")
 
 
 c1=Cult.new("White Tigers", "London", "Don't think twice", 1989)
 c2=Cult.new("Brother", "Berlin", "tbc", 2012)
 c3=Cult.new("Sisters", "New York", "Old School", 2012)
-c4=Cult.new("Little Brothers", "Berlin", "tbc", 2013)
+c4=Cult.new("Little Brothers", "New York", "tbc", 2013)
 
-c1.recruit_follower(f1)
+c2.recruit_follower(f1)
 c1.recruit_follower(f2)
+
+c2.recruit_follower(f2)
+c2.recruit_follower(f5)
+c2.recruit_follower(f3)
+c3.recruit_follower(f2)
 
 binding.pry
 
