@@ -58,11 +58,16 @@ class Cult
     end
 
     def cult_population
-        own_bloodoaths.map {|bloodoath|bloodoath.follower}.size
+        own_bloodoaths.map {|bloodoath|bloodoath.follower}
     end
 
+    def cult_population_size
+        cult_population.size
+    end
+
+
     def population_ages
-        cult_population.map {|follower| follower.age}
+        cult_population_size.map {|follower| follower.age}
     end
 
     def average_age
