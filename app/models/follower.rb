@@ -15,21 +15,39 @@ class Follower
         @@all
     end
 
-    #     Follower#cults
-    # returns an Array of this follower's cults
     def cults
         BloodOath.all.select{|oath| oath.follower == self}
     end
 
-    # Follower#join_cult
-    # takes in an argument of a Cult instance and adds this follower to the cult's list of followers
     def join_cult(cult)
         BloodOath.new(cult, self, Date.today.to_s)
     end 
 
-    # Follower.of_a_certain_age
-    # takes a Fixnum argument that is an age and returns an Array of followers who are the given age or older
     def self.of_a_certain_age(age)
         self.all.select{|follower| follower.age == age}
     end
+
+    def my_cults_slogans
+        cults.map{|cult| cult.cult.slogan}
+    end
+
+# Follower.most_active
+# returns the Follower instance who has joined the most cults
+    def self.most_active
+        follower_instances = get_all_follower_instances
+
+        most_active = follower_instances.max_by{|follower|follower_instances.count(follower)}
+    end
+
+    def self.get_all_follower_instances
+        BloodOath.all.map{|oath|oath.follower}
+    end
+
+    def self.top_ten
+        follower_instances = self.get_all_follower_instances
+
+        ten_most_active = follower_instances.sort_by{|follower|follower_instances.count(follower)}.uniq.reverse[0..9]
+
+    end
+
 end

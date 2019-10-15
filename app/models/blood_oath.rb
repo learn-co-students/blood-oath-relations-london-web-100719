@@ -9,11 +9,14 @@ class BloodOath
         @follower = follower
         @initiation_date = initiation_date #YYYY-MM-DD
         @@all << self
-
     end
 
     def self.all
         @@all
     end 
+
+    def self.first_oath
+        self.all.sort_by{|oath| oath.initiation_date}[0]
+    end
 
 end
